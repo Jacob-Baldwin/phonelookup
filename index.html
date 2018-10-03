@@ -74,11 +74,11 @@
             success : function(parsed_json) {
               var lineType = parsed_json['line_type'];
               var userCarrier = parsed_json['carrier'];
-              var phoneUser = parsed_json['id'];
+              var phoneUser = parsed_json['belongs_to'];
               var everything = "";
               everything += "Line Type: " + lineType;
               everything += "<br>Phone Service: " + userCarrier;
-              everything += "<br>Phone Owner: " + phoneUser.name;
+              everything += "<br>Phone Owner: " + phoneUser[0].name;
               $("#more_info").html(everything);
             }
             
