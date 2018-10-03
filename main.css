@@ -1,7 +1,12 @@
+body {
+  background-image: url("phone.jpg");
+}
+
 .content {
   margin: auto;
   text-align: center;
   width: 70vw;
-  background-color: lightgray;
-  height: 100%;
+  background-color: #f2f2f2;
+  height: 80%;
+  border-radius: 10px;
 }
