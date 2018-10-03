@@ -9,7 +9,7 @@
 
   <body>
 
-    <div class="content">
+    <div class="Content">
       <h2>Phone Reputation</h2>
       <h3>Zachry Jacklin and Jacob Baldwin</h3>
       Please enter a phone number with only numbers (no spaces or other character).<br>
@@ -35,13 +35,11 @@
               var type = parsed_json['type'];
               var reportCount = parsed_json['report_count'];
               var everything = "";
-              everything += "<ul>";
-              everything += "<li>Phone Number: " + phoneNumber;
-              everything += "<li>Country Code: " + countryCode;
-              everything += "<li>Reputation Level: " + reputationLevel;
-              everything += "<li>Type: " + type;
-              everything += "<li>Times Reported: " + reportCount;
-              everything += "</ul>";
+              everything += "Phone Number: " + phoneNumber;
+              everything += "<br>Country Code: " + countryCode;
+              everything += "<br>Reputation Level: " + reputationLevel;
+              everything += "<br>Type: " + type;
+              everything += "<br>Times Reported: " + reportCount;
               $("#phone_rep_display").html(everything);
             }
           });
@@ -49,7 +47,10 @@
 
       </script>
 
-      <div id = "phone_rep_display">
+      <div class="DisplayContainer">
+        <h5>Number Information</h5>
+        <div id = "phone_rep_display" class="PhoneRepDisplay">
+      </div>
 
       </div>
       
