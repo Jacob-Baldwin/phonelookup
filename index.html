@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js">
+      </script>
+    <link rel="stylesheet" href="main.css">
+
+    <title>Phone Number Trustability Lookup</title>
+  </head>
+
+  <body>
+
+    <div class="content">
+      <!-- PUT THE PAGE HERE -->
+      <h2>Phone Reputation</h2>
+      Please enter a phone number with only numbers (no spaces or other character).<br>
+      Enter phone number: <input type = "text" id = "phone_rep" value = "">
+      <input id = "repButton" type = "submit" value = "Submit">
+      
+      <script>
+        $("#repButton").click(function(e) {
+          var value = $("#phone_rep").val();
+          console.log(value);
+          e.preventDefault();
+          var myUrl = "https://proapi.whitepages.com/3.0/phone_reputation?phone=";
+          myUrl += value;
+          myUrl += "&api_key=66e794084887480e81a1b062ff86b1b1";
+          console.log(myUrl);
+          $.ajax({
+            url : myUrl,
+            datatype: "json",
+            success : function(parsed_json) {
+              var phoneNumber = parsed_json['phone_number'];
+              var countryCode = parsed_json['country_code'];
+              var reputationLevel = parsed_json['reputation_level'];
+              var type = parsed_json['type'];
+              var reportCount = parsed_json['report_count'];
+              var everything = "";
+              everything += "<ul>";
+              everything += "<li>Phone Number: " + phoneNumber;
+              everything += "<li>Country Code: " + countryCode;
+              everything += "<li>Reputation Level: " + reputationLevel;
+              everything += "<li>Type: " + type;
+              everything += "<li>Times Reported: " + reportCount;
+              everything += "</ul>";
+              $("#phone_rep_display").html(everything);
+            }
+          });
+        });
+        
+      </script>
+      
+      <div id = "phone_rep_display">
+        
+      </div>
+      
+    </div>
+
+  </body>
+</html>
