@@ -32,13 +32,13 @@
               var phoneNumber = parsed_json['phone_number'];
               var countryCode = parsed_json['country_code'];
               var reputationLevel = parsed_json['reputation_level'];
-              var type = parsed_json['type'];
+              var reputationDetails = parsed_json['reputation_details'];
               var reportCount = parsed_json['report_count'];
               var everything = "";
               everything += "Phone Number: " + phoneNumber;
               everything += "<br>Country Code: " + countryCode;
               everything += "<br>Reputation Level: " + reputationLevel;
-              everything += "<br>Type: " + type;
+              everything += "<br>Reputation Details [Score: " + reputationDetails.score + ", Type: " + reputationDetails.type + ", Category: " + reputationDetails.category + "]";
               everything += "<br>Times Reported: " + reportCount;
               $("#phone_rep_display").html(everything);
             }
@@ -60,7 +60,7 @@
       <input id = "more_button" type = "submit" value ="Submit">
       
       <script>
-        $("#more_button").click(function() {
+        $("#more_button").click(function(e) {
           var value = $("#phone_rep").val();
           console.log(value);
           e.preventDefault();
