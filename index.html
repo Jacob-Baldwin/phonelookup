@@ -9,14 +9,9 @@
 
   <body>
 
-<<<<<<< HEAD
     <div class="Content">
       <h2>Phone Reputation</h2>
       <h3>Zachry Jacklin and Jacob Baldwin</h3>
-      Please enter a phone number with only numbers (no spaces or other character).<br>
-      Enter phone number: <input type = "text" id = "phone_rep" value = "">
-      <input id = "repButton" type = "submit" value = "Submit">
-
       <script>
         $("#repButton").click(function(e) {
           var value = $("#phone_rep").val();
@@ -43,12 +38,8 @@
               everything += "<br>Times Reported: " + reportCount;
               $("#phone_rep_display").html(everything);
             }
-=======
-    <div class="ContentContainer">
-
-      <div class="Content">
-        <h2>Phone Reputation</h2>
-        <h3>Zachry Jacklin and Jacob Baldwin</h3>
+        </script>
+    <div class ="ContentContainer">
 
         <div class="Instructions">
           Please enter a phone number with only numbers (no spaces or other character) to get information about its reputability.
@@ -58,38 +49,6 @@
           Enter phone number: <input type = "text" id = "phone_rep" value = "">
           <input id = "repButton" type = "submit" value = "Submit">
         </div>
-
-
-        <script>
-          $("#repButton").click(function(e) {
-            var value = $("#phone_rep").val();
-            console.log(value);
-            e.preventDefault();
-            var myUrl = "https://proapi.whitepages.com/3.0/phone_reputation?phone=";
-            myUrl += value;
-            myUrl += "&api_key=66e794084887480e81a1b062ff86b1b1";
-            console.log(myUrl);
-            $.ajax({
-              url : myUrl,
-              datatype: "json",
-              success : function(parsed_json) {
-                var phoneNumber = parsed_json['phone_number'];
-                var countryCode = parsed_json['country_code'];
-                var reputationLevel = parsed_json['reputation_level'];
-                var type = parsed_json['type'];
-                var reportCount = parsed_json['report_count'];
-                var everything = "";
-                everything += "Phone Number: " + phoneNumber;
-                everything += "<br>Country Code: " + countryCode;
-                everything += "<br>Reputation Level: " + reputationLevel;
-                everything += "<br>Type: " + type;
-                everything += "<br>Times Reported: " + reportCount;
-                $("#phone_rep_display").html(everything);
-              }
-            });
-          });
-
-        </script>
 
         <div class="DisplayContainer">
           <h5>Number Information</h5>
