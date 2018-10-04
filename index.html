@@ -1,17 +1,29 @@
 <html>
-  <head>
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js">
-      </script>
-    <link rel="stylesheet" href="main.css">
 
-    <title>Phone Number Trustability Lookup</title>
-  </head>
+<head>
+  <script src="http://code.jquery.com/jquery-3.2.1.min.js">
+  </script>
+  <link rel="stylesheet" href="main.css">
 
-  <body>
+  <title>Phone Number Trustability Lookup</title>
+</head>
 
-    <div class="Content">
-      <h2>Phone Reputation</h2>
-      <h3>Zachry Jacklin and Jacob Baldwin</h3>
+<body>
+
+  <div class="Content">
+    <h2>Phone Reputation</h2>
+    <h3>Zachry Jacklin and Jacob Baldwin</h3>
+
+    <div class="ContentContainer">
+
+      <div class="Instructions">
+        Please enter a phone number with only numbers (no spaces or other character) to get information about its reputability.
+      </div>
+
+      <div class="PhoneNumberInput">
+        Enter phone number: <input type="text" id="phone_rep" value="">
+        <input id="repButton" type="submit" value="Submit">
+      </div>
       <script>
         $("#repButton").click(function(e) {
           var value = $("#phone_rep").val();
@@ -22,9 +34,9 @@
           myUrl += "&api_key=66e794084887480e81a1b062ff86b1b1";
           console.log(myUrl);
           $.ajax({
-            url : myUrl,
+            url: myUrl,
             datatype: "json",
-            success : function(parsed_json) {
+            success: function(parsed_json) {
               var phoneNumber = parsed_json['phone_number'];
               var countryCode = parsed_json['country_code'];
               var reputationLevel = parsed_json['reputation_level'];
@@ -38,62 +50,64 @@
               everything += "<br>Times Reported: " + reportCount;
               $("#phone_rep_display").html(everything);
             }
-        </script>
-    <div class ="ContentContainer">
-
-        <div class="Instructions">
-          Please enter a phone number with only numbers (no spaces or other character) to get information about its reputability.
-        </div>
-
-        <div class="PhoneNumberInput">
-          Enter phone number: <input type = "text" id = "phone_rep" value = "">
-          <input id = "repButton" type = "submit" value = "Submit">
-        </div>
-
-        <div class="DisplayContainer">
-          <h5>Number Information</h5>
-          <div id = "phone_rep_display" class="PhoneRepDisplay">
-        </div>
-
-        </div>
-
-      </div>
-      
-      <h2>Phone Information</h2>
-      
-      Click submit for further information.<br>
-      <input id = "more_button" type = "submit" value ="Submit">
-      
-      <script>
-        $("#more_button").click(function(e) {
-          var value = $("#phone_rep").val();
-          console.log(value);
-          e.preventDefault();
-          myUrl = "https://proapi.whitepages.com/3.0/phone?phone=";
-          myUrl += value;
-          myUrl += "&api_key=1c202ebe4dbb451f91197e0120c0f4d6";
-          console.log(myUrl);
-          $.ajax({
-            url: myUrl,
-            datatype: "json",
-            success : function(parsed_json) {
-              var lineType = parsed_json['line_type'];
-              var userCarrier = parsed_json['carrier'];
-              var phoneUser = parsed_json['belongs_to'];
-              var everything = "";
-              everything += "Line Type: " + lineType;
-              everything += "<br>Phone Service: " + userCarrier;
-              everything += "<br>Phone Owner: " + phoneUser[0].name;
-              $("#more_info").html(everything);
-            }
-            
           });
         });
       </script>
-      <div id = "more_info">
-        
+      <div class="DisplayContainer">
+        <h5>Number Information</h5>
+        <div id="phone_rep_display" class="PhoneRepDisplay">
+        </div>
+
       </div>
+
     </div>
 
-  </body>
+    <h2>Phone Information</h2>
+
+    Click submit for further information.<br>
+    <input id="more_button" type="submit" value="Submit">
+
+    <script>
+      $("#more_button").click(function(e) {
+        var value = $("#phone_rep").val();
+        console.log(value);
+        e.preventDefault();
+        myUrl = "https://proapi.whitepages.com/3.0/phone?phone=";
+        myUrl += value;
+        myUrl += "&api_key=1c202ebe4dbb451f91197e0120c0f4d6";
+        console.log(myUrl);
+        $.ajax({
+          url: myUrl,
+          datatype: "json",
+          success: function(parsed_json) {
+            var lineType = parsed_json['line_type'];
+            var userCarrier = parsed_json['carrier'];
+            var phoneUser = parsed_json['belongs_to'];
+            var userAddress = parsed_json['current_addresses'];
+            var everything = "";
+            everything += "Line Type: " + lineType;
+            everything += "<br>Phone Service: " + userCarrier;
+            if (phoneUser[0] == undefined) {
+              alert('Error: More information could not be grabbed from proapi.whitepages.com');
+            }
+            else {
+            everything += "<br>Phone Owner: " + phoneUser[0].name;
+            everything += "<br>OwnerAge Range: " + phoneUser[0].age_range;
+            everything += "<br>Owner Identity: " + phoneUser[0].type;
+            everything += "<br>Owner Industry: " + phoneUser[0].industry;
+            everything += "<br>Owner Current Address: " + userAddress[0].street_line_1 + ", " + userAddress[0].city + " " + userAddress[0].state_code + ", " + userAddress[0].country_code + " " + userAddress[0].postal_code;
+            $("#more_info").html(everything);
+            }
+          }
+
+        });
+      });
+    </script>
+    <div id="more_info">
+
+    </div>
+  </div>
+
+</body>
+
 </html>
