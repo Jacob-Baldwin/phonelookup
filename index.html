@@ -11,9 +11,10 @@
 <body>
 
   <div class="Content">
+    <div class = "Headings">
     <h2>Phone Reputation</h2>
     <h3>Zachry Jacklin and Jacob Baldwin</h3>
-
+    </div>
     <div class="ContentContainer">
 
       <div class="Instructions">
@@ -46,8 +47,21 @@
               everything += "Phone Number: " + phoneNumber;
               everything += "<br>Country Code: " + countryCode;
               everything += "<br>Reputation Level: " + reputationLevel;
-              everything += "<br>Reputation Details [Score: " + reputationDetails.score + ", Type: " + reputationDetails.type + ", Category: " + reputationDetails.category + "]";
+              everything += "<br>[Reputation Details]" + "<br>Score: " + reputationDetails.score + "<br>Type: " + reputationDetails.type + "<br>Category: " + reputationDetails.category;
               everything += "<br>Times Reported: " + reportCount;
+              if (reputationLevel == "1") {
+                everything += "<br><img src = \"check.jpg\">";
+                everything += "<br>This phone scored a 1 meaning it is spam free!";
+                
+              }
+              else if (reputationLevel == "2") {
+                everything += "<br><img src = \"deepthought.jpg\">";
+                everything += "<br>This phone scored a 2 which means it might be a spamming phone number.";
+              }
+              else if (reputationLevel == "3"||"4") {
+                everything += "<br><img src = \"telemarketer.jpg\">";
+                everything += "<br>This phone scored either a 3 or 4 which means it is probably a spamming number!";
+              }
               $("#phone_rep_display").html(everything);
             }
           });
@@ -57,13 +71,16 @@
         <h5>Number Information</h5>
         <div id="phone_rep_display" class="PhoneRepDisplay">
         </div>
-
+        <div id = "picture_display">
+          
+        </div>
       </div>
 
     </div>
-
+    <div class = "Headings">
     <h2>Phone Information</h2>
-
+    </div>
+    <div class = "ContentContainer">
     Click submit for further information.<br>
     <input id="more_button" type="submit" value="Submit">
 
@@ -103,8 +120,12 @@
         });
       });
     </script>
+    <div class = "DisplayContainer">
+      <h5>Extra Information</h5>
     <div id="more_info">
 
+    </div>
+    </div>
     </div>
   </div>
 
