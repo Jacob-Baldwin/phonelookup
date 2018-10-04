@@ -49,9 +49,9 @@ alert {
   background-color: #f2f2f2;
   height: 80%;
   border-radius: 10px;
-  background-image: url('phonepic.jpg');
-  background-repeat: no-repeat;
-  background-position: right bottom;
+  /* background-image: url('phonepic.jpg'); */
+  /* background-repeat: no-repeat; */
+  /* background-position: right bottom; */
 }
 
 .Content {
