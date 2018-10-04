@@ -7,6 +7,40 @@ alert {
   color: red;
 }
 
+#repbutton {
+  border-style: outset;
+  border-width: 5px;
+  border-color: gray;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+#repbutton:hover {
+  background-color: black;
+  color: white;
+}
+
+#repbutton:active {
+  border-style: inset;
+}
+
+#more_button {
+  border-style: outset;
+  border-width: 5px;
+  border-color: gray;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+#more_button:hover {
+  background-color: black;
+  color: white;
+}
+
+#more_button:active {
+  border-style: inset;
+}
+
 .ContentContainer {
   margin: auto;
   padding-top: 20px;
@@ -15,6 +49,9 @@ alert {
   background-color: #f2f2f2;
   height: 80%;
   border-radius: 10px;
+  background-image: url('phonepic.jpg');
+  background-repeat: no-repeat;
+  background-position: right bottom;
 }
 
 .Content {
